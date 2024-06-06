@@ -12,6 +12,8 @@ public class HomePage {
 
     private WebDriver driver;
 
+    //Кнопка Да все привыкли
+    private By appCookieButton = By.className("App_CookieButton__3cvqF");
     //Вопросы о важном
     private String questionID = "accordion__heading-";
     private By question = By.id(questionID);
@@ -20,7 +22,7 @@ public class HomePage {
     //Кнопка Заказать в хедере
     private By headerOrderButton = By.className("Button_Button__ra12g");
     //Кнопка Заказать внизу страницы
-    private By pageOrderButton = By.xpath(".//button[contains(@class,'Button_UltraBig__UU3Lp')]");
+    private By pageOrderButton = By.xpath(".//div[@class='Home_FinishButton__1_cWm']//button[text()='Заказать']");
     //Кнопка Статус заказа
     private By orderStatusButton = By.className("Header_Link__1TAG7");
     //Логотип Яндекс
@@ -53,6 +55,13 @@ public class HomePage {
         dropListClick(questionNumber);
         String dropListText = dropListGetText();
         return dropListText;
+    }
+
+    //Проверка доступности и клик по кнопке Да все привыкли
+    public void appCookieButtonClick(){
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.visibilityOf(driver.findElement(appCookieButton)));
+        driver.findElement(appCookieButton).click();
     }
 
     //Проверка доступности и клик по кнопке Заказать в хедере

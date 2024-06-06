@@ -4,6 +4,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import pageLocators.HomePage;
 import static org.junit.Assert.assertEquals;
 
@@ -38,11 +39,13 @@ public class DropListCheck {
 
     @Test
     public void DropListTest() {
+        //Выбор драйвера браузера и переход по ссылке
         driver = new ChromeDriver();
         //driver = new FirefoxDriver();
         driver.get("https://qa-scooter.praktikum-services.ru");
 
         HomePage objHomePage = new HomePage(driver);
+        objHomePage.appCookieButtonClick();
 
         String actualDropListText = objHomePage.dropListCheck(questionNumber);
         //System.out.println(actualDropListText);

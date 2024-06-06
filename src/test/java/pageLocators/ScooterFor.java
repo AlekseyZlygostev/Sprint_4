@@ -18,10 +18,17 @@ public class ScooterFor {
     private By adressField = By.xpath(".//input[@placeholder='* Адрес: куда привезти заказ']");
     //Поле Станция метро
     private By stationField = By.xpath(".//input[@placeholder='* Станция метро']");
+    //Выпадающий список Станция метро
+    private String stationXPath = ".//div[text() = '";
+    private By stationList = By.xpath(stationXPath);
     //Поле Телефон
     private By phoneField = By.xpath(".//input[@placeholder='* Телефон: на него позвонит курьер']");
     //Кнопка Далее
     private By nextButton = By.xpath(".//button[text()='Далее']");
+
+    public ScooterFor(WebDriver driver) {
+        this.driver = driver;
+    }
 
     //Проверка доступности и заполнение поля Имя
     public void nameFieldSendText(String name){
@@ -44,11 +51,16 @@ public class ScooterFor {
         driver.findElement(adressField).sendKeys(address);
     }
 
-    //Проверка доступности и заполнение поля Станция метро
+    //Проверка доступности и выбор Станции метро
     public void stationFieldSendText(String station){
+        stationXPath = stationXPath + station + "']";
+        stationList = By.xpath(stationXPath);
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOf(driver.findElement(stationField)));
-        driver.findElement(stationField).sendKeys(station);
+        driver.findElement(stationField).click();
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.visibilityOf(driver.findElement(stationList)));
+        driver.findElement(stationList).click();
     }
 
     //Проверка доступности и заполнение поля Телефон
