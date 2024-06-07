@@ -11,8 +11,8 @@ public class AboutRent {
 
     private WebDriver driver;
 
-    //Поле Когда привезти самокат
-    private By whenBringScooterField = By.xpath(".//input[@placeholder='* Когда привезти самокат']");
+    //Поле Дата доставки
+    private By deliveryDateField = By.xpath(".//input[@placeholder='* Когда привезти самокат']");
     //Кнопка Следующий месяц
     private By nextMonthButton = By.xpath(".//button[contains(@class,'react-datepicker__navigation--next')]");
     //Выпадающий квлендарь
@@ -23,6 +23,8 @@ public class AboutRent {
     //Выпадающий список Срок аренды
     private String period = ".//div[text() = '";
     private By rentalPeriodList = By.xpath(period);
+    //Поле Цвет самоката
+    private By scooterColorField = By.className("Order_Title__3EKne");
     //Чекбокс Черный жемчуг
     private By blackPearlCheckBox = By.id("black");
     //Чекбокс Серая безысходность
@@ -41,14 +43,14 @@ public class AboutRent {
         Date current = new Date();
         int day = current.getDate();
         new WebDriverWait(driver, Duration.ofSeconds(3))
-                .until(ExpectedConditions.visibilityOf(driver.findElement(whenBringScooterField)));
-        driver.findElement(whenBringScooterField).click();
-        if (whenBring == "завтра"){
+                .until(ExpectedConditions.visibilityOf(driver.findElement(deliveryDateField)));
+        driver.findElement(deliveryDateField).click();
+        if (whenBring.equals("завтра")){
             day += 1;
             daySelect = daySelect + day + "']";
             calenderList = By.xpath(daySelect);
         }
-        else if (whenBring == "позже"){
+        else if (whenBring.equals("позже")){
             new WebDriverWait(driver, Duration.ofSeconds(3))
                     .until(ExpectedConditions.visibilityOf(driver.findElement(nextMonthButton)));
             driver.findElement(nextMonthButton).click();
@@ -105,5 +107,33 @@ public class AboutRent {
         whenBringScooterFieldSelect(whenBring);
         rentalPeriodFieldSelect( daysCount);
         orderButtonClick();
+    }
+
+    //Проверка доступности и получение текста плейсхолдера Дата доставки
+    public String deliveryDateFieldGetText(){
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.visibilityOf(driver.findElement(deliveryDateField)));
+        return driver.findElement(deliveryDateField).getAttribute("placeholder");
+    }
+
+    //Проверка доступности и получение текста плейсхолдера Срок аренды
+    public String rentalPeriodFieldGetText(){
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.visibilityOf(driver.findElement(rentalPeriodField)));
+        return driver.findElement(rentalPeriodField).getText();
+    }
+
+    //Проверка доступности и получение текста плейсхолдера Цвет самоката
+    public String scooterColorFieldGetText(){
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.visibilityOf(driver.findElement(scooterColorField)));
+        return driver.findElement(scooterColorField).getText();
+    }
+
+    //Проверка доступности и получение текста плейсхолдера Комментарий для курьера
+    public String commentFieldGetText(){
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.visibilityOf(driver.findElement(commentField)));
+        return driver.findElement(commentField).getAttribute("placeholder");
     }
 }

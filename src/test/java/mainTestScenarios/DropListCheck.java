@@ -1,3 +1,5 @@
+package mainTestScenarios;
+
 import org.junit.Test;
 import org.junit.After;
 import org.junit.runner.RunWith;

@@ -15,7 +15,7 @@ public class ScooterFor {
     //Поле Фамилия
     private By surnameField = By.xpath(".//input[@placeholder='* Фамилия']");
     //Поле Адрес
-    private By adressField = By.xpath(".//input[@placeholder='* Адрес: куда привезти заказ']");
+    private By addressField = By.xpath(".//input[@placeholder='* Адрес: куда привезти заказ']");
     //Поле Станция метро
     private By stationField = By.xpath(".//input[@placeholder='* Станция метро']");
     //Выпадающий список Станция метро
@@ -45,10 +45,10 @@ public class ScooterFor {
     }
 
     //Проверка доступности и заполнение поля Адрес
-    public void adressFieldSendText(String address){
+    public void addressFieldSendText(String address){
         new WebDriverWait(driver, Duration.ofSeconds(3))
-                .until(ExpectedConditions.visibilityOf(driver.findElement(adressField)));
-        driver.findElement(adressField).sendKeys(address);
+                .until(ExpectedConditions.visibilityOf(driver.findElement(addressField)));
+        driver.findElement(addressField).sendKeys(address);
     }
 
     //Проверка доступности и выбор Станции метро
@@ -81,9 +81,44 @@ public class ScooterFor {
     public void scooterForSend(String name, String surname, String address, String station, String phone){
         nameFieldSendText(name);
         surnameFieldSendText(surname);
-        adressFieldSendText(address);
+        addressFieldSendText(address);
         stationFieldSendText(station);
         phoneFieldSendText(phone);
         nextButtonClick();
+    }
+
+    //Проверка доступности и получение текста плейсхолдера Имя
+    public String nameFieldGetText(){
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.visibilityOf(driver.findElement(nameField)));
+        return driver.findElement(nameField).getAttribute("placeholder");
+    }
+
+    //Проверка доступности и получение текста плейсхолдера Фамилия
+    public String surnameFieldGetText(){
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.visibilityOf(driver.findElement(surnameField)));
+        return driver.findElement(surnameField).getAttribute("placeholder");
+    }
+
+    //Проверка доступности и получение текста плейсхолдера Адрес
+    public String adressFieldGetText(){
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.visibilityOf(driver.findElement(addressField)));
+        return driver.findElement(addressField).getAttribute("placeholder");
+    }
+
+    //Проверка доступности и получение текста плейсхолдера Станции метро
+    public String stationFieldGetText(){
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.visibilityOf(driver.findElement(stationField)));
+        return driver.findElement(stationField).getAttribute("placeholder");
+    }
+
+    //Проверка доступности и получение текста плейсхолдера Телефон
+    public String phoneFieldGetText(){
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.visibilityOf(driver.findElement(phoneField)));
+        return driver.findElement(phoneField).getAttribute("placeholder");
     }
 }

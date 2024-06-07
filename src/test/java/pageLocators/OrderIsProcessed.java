@@ -22,5 +22,6 @@ public class OrderIsProcessed {
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOf(driver.findElement(orderIsProcessedMessage)));
         return driver.findElement(orderIsProcessedMessage).getText();
+
     }
 }

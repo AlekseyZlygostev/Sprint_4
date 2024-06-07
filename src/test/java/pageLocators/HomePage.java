@@ -25,6 +25,10 @@ public class HomePage {
     private By pageOrderButton = By.xpath(".//div[@class='Home_FinishButton__1_cWm']//button[text()='Заказать']");
     //Кнопка Статус заказа
     private By orderStatusButton = By.className("Header_Link__1TAG7");
+    //Поле Введите номер заказа
+    private By enterOrderNumberField = By.xpath(".//input[@placeholder='Введите номер заказа']");
+    //Кнопка Go!
+    private By goButton = By.xpath(".//button[text()='Go!']");
     //Логотип Яндекс
     private By yandexLogo = By.xpath(".//img[@alt='Yandex']");
     //Логотип Самокат
@@ -84,6 +88,27 @@ public class HomePage {
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOf(driver.findElement(orderStatusButton)));
         driver.findElement(orderStatusButton).click();
+    }
+
+    //Проверка доступности и заполнение поля Введите номер заказа
+    public void enterOrderNumberFieldSendText(String orderNumber){
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.visibilityOf(driver.findElement(enterOrderNumberField)));
+        driver.findElement(enterOrderNumberField).sendKeys(orderNumber);
+    }
+
+    //Проверка доступности и клик по кнопке Go!
+    public void goButtonClick(){
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.visibilityOf(driver.findElement(goButton)));
+        driver.findElement(goButton).click();
+    }
+
+    //Шаги заполнения формы Для кого самокат
+    public void checkWrongOrderNumber(String orderNumber){
+        orderStatusButtonClick();
+        enterOrderNumberFieldSendText(orderNumber);
+        goButtonClick();
     }
 
     //Проверка доступности и клик по лого Яндекса
