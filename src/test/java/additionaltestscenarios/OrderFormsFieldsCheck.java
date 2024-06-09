@@ -1,29 +1,18 @@
-package additionalTestScenarios;
+package additionaltestscenarios;
 
+import commondata.OpenClose;
 import org.hamcrest.MatcherAssert;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import pageLocators.AboutRent;
-import pageLocators.HomePage;
-import pageLocators.ScooterFor;
-
+import pagelocators.AboutRent;
+import pagelocators.HomePage;
+import pagelocators.ScooterFor;
 import static org.hamcrest.CoreMatchers.containsString;
 
-public class OrderFormsFieldsCheck {
-
-    private WebDriver driver;
+public class OrderFormsFieldsCheck extends OpenClose {
 
     @Before
-    public void openLinkInBrowserAndOrderButtonClick() {
-        //Выбор драйвера браузера и переход по ссылке
-        driver = new ChromeDriver();
-        //driver = new FirefoxDriver();
-        driver.get("https://qa-scooter.praktikum-services.ru");
-
+    public void OrderButtonClick() {
         HomePage objHomePage = new HomePage(driver);
         objHomePage.appCookieButtonClick();
         objHomePage.headerOrderButtonClick();
@@ -89,10 +78,5 @@ public class OrderFormsFieldsCheck {
         objScooterFor.scooterForSend("Джон", "Смит", "Вязов, д.13", "Лужники", "+79876543210");
         AboutRent objAboutRent = new AboutRent(driver);
         MatcherAssert.assertThat(objAboutRent.commentFieldGetText(), containsString("Комментарий"));
-    }
-
-    @After
-    public void teardown() {
-        driver.quit();
     }
 }

@@ -1,4 +1,4 @@
-package pageLocators;
+package pagelocators;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -83,6 +83,14 @@ public class HomePage {
         driver.findElement(pageOrderButton).click();
     }
 
+    public void whichButtonClick(int whichButton){
+        if(whichButton == 1){
+            headerOrderButtonClick();
+        } else if (whichButton == 2) {
+            pageOrderButtonClick();
+        }
+    }
+
     //Проверка доступности и клик по кнопке Статус заказа
     public void orderStatusButtonClick(){
         new WebDriverWait(driver, Duration.ofSeconds(3))
@@ -105,7 +113,7 @@ public class HomePage {
     }
 
     //Шаги заполнения формы Для кого самокат
-    public void checkWrongOrderNumber(String orderNumber){
+    public void checkOrderNumber(String orderNumber){
         orderStatusButtonClick();
         enterOrderNumberFieldSendText(orderNumber);
         goButtonClick();

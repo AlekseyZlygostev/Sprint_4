@@ -1,17 +1,14 @@
-package mainTestScenarios;
+package maintestscenarios;
 
+import commondata.OpenClose;
 import org.junit.Test;
-import org.junit.After;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import pageLocators.HomePage;
+import pagelocators.HomePage;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
-public class DropListCheck {
+public class DropListCheck extends OpenClose {
 
     private final int questionNumber;
     private final String dropListText;
@@ -37,14 +34,8 @@ public class DropListCheck {
         };
     }
 
-    private WebDriver driver;
-
     @Test
     public void DropListTest() {
-        //Выбор драйвера браузера и переход по ссылке
-        driver = new ChromeDriver();
-        //driver = new FirefoxDriver();
-        driver.get("https://qa-scooter.praktikum-services.ru");
 
         HomePage objHomePage = new HomePage(driver);
         objHomePage.appCookieButtonClick();
@@ -52,10 +43,5 @@ public class DropListCheck {
         String actualDropListText = objHomePage.dropListCheck(questionNumber);
         //System.out.println(actualDropListText);
         assertEquals(dropListText, actualDropListText);
-    }
-
-    @After
-    public void teardown() {
-        driver.quit();
     }
     }

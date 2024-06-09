@@ -1,4 +1,4 @@
-package pageLocators;
+package pagelocators;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -86,6 +86,18 @@ public class AboutRent {
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOf(driver.findElement(grayHopelessnesslCheckBox)));
         driver.findElement(grayHopelessnesslCheckBox).click();
+    }
+
+    public void selectColor(int color){
+        if (color == 1){
+            blackPearlCheckBoxClick();
+        } else if (color == 2) {
+            grayHopelessnessCheckBoxClick();
+        } else if (color == 3) {
+            blackPearlCheckBoxClick();
+            grayHopelessnessCheckBoxClick();
+        }
+        else return;
     }
 
     //Проверка доступности и заполнение поля Комментарий для курьера
