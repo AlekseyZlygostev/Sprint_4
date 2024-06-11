@@ -12,7 +12,7 @@ import static org.hamcrest.CoreMatchers.containsString;
 public class OrderFormsFieldsCheck extends OpenClose {
 
     @Before
-    public void OrderButtonClick() {
+    public void orderButtonClick() {
         HomePage objHomePage = new HomePage(driver);
         objHomePage.appCookieButtonClick();
         objHomePage.headerOrderButtonClick();
@@ -33,7 +33,7 @@ public class OrderFormsFieldsCheck extends OpenClose {
     @Test
     public void addressFieldCheck(){
         ScooterFor objScooterFor = new ScooterFor(driver);
-        MatcherAssert.assertThat(objScooterFor.adressFieldGetText(), containsString("Адрес"));
+        MatcherAssert.assertThat(objScooterFor.addressFieldGetText(), containsString("Адрес"));
     }
 
     @Test

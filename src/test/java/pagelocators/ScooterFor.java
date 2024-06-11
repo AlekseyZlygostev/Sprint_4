@@ -102,7 +102,7 @@ public class ScooterFor {
     }
 
     //Проверка доступности и получение текста плейсхолдера Адрес
-    public String adressFieldGetText(){
+    public String addressFieldGetText(){
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOf(driver.findElement(addressField)));
         return driver.findElement(addressField).getAttribute("placeholder");

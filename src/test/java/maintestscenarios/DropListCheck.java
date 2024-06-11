@@ -35,7 +35,7 @@ public class DropListCheck extends OpenClose {
     }
 
     @Test
-    public void DropListTest() {
+    public void dropListTest() {
 
         HomePage objHomePage = new HomePage(driver);
         objHomePage.appCookieButtonClick();
